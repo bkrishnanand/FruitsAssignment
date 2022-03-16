@@ -19,11 +19,11 @@ public class FruitsTest {
 
         mixedFruitBowl.addFruit(fruits1,fruits2,fruits3,fruits4);
 
-        multilayerBowl.getAllFruitsByRedColor();
-        multilayerBowl.getAllFruitsByGreenColor();
+        multilayerBowl.getAllFruitsByRedColorCount();
+        multilayerBowl.getAllFruitsByGreenColorCount();
 
-        Assert.assertEquals(multilayerBowl.getAllFruitsByGreenColor(),2);
-        Assert.assertEquals(multilayerBowl.getAllFruitsByRedColor(),2);
+        Assert.assertEquals(multilayerBowl.getAllFruitsByGreenColorCount(),2);
+        Assert.assertEquals(multilayerBowl.getAllFruitsByRedColorCount(),2);
     }
 
     @Test
@@ -38,11 +38,11 @@ public class FruitsTest {
 
         mixedFruitBowl.addFruit(fruits1,fruits2,fruits3,fruits4);
 
-        multilayerBowl.getAllFruitsBySmallSize();
-        multilayerBowl.getAllFruitsByMediumSize();
+        multilayerBowl.getAllFruitsBySmallSizeCount();
+        multilayerBowl.getAllFruitsByMediumSizeCount();
 
-        Assert.assertEquals(multilayerBowl.getAllFruitsBySmallSize(),1);
-        Assert.assertEquals(multilayerBowl.getAllFruitsByMediumSize(),3);
+        Assert.assertEquals(multilayerBowl.getAllFruitsBySmallSizeCount(),1);
+        Assert.assertEquals(multilayerBowl.getAllFruitsByMediumSizeCount(),3);
     }
 
     @Test
@@ -57,10 +57,10 @@ public class FruitsTest {
 
         mixedFruitBowl.addFruit(fruits1,fruits2,fruits3,fruits4);
 
-        multilayerBowl.getAllFruitsBySourType();
-        multilayerBowl.getAllFruitsBySweetType();
+        multilayerBowl.getAllFruitsBySourTypeCount();
+        multilayerBowl.getAllFruitsBySweetTypeCount();
 
-        Assert.assertEquals(multilayerBowl.getAllFruitsBySourType(),3);
-        Assert.assertEquals(multilayerBowl.getAllFruitsBySweetType(),1);
+        Assert.assertEquals(multilayerBowl.getAllFruitsBySourTypeCount(),3);
+        Assert.assertEquals(multilayerBowl.getAllFruitsBySweetTypeCount(),1);
     }
 }
