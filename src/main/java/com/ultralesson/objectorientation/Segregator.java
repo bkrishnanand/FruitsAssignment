@@ -1,40 +1,58 @@
 package com.ultralesson.objectorientation;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
-public class Segregator extends Bowl{
+// A segregator takes a list (bowl) of fruits and segregate them based on a certain parameters like size, color, type etc.
+public class Segregator {
+    private List<Fruit> fruits;
+    private MultilayerBowl multilayerBowl;
 
-    public List segregateByColor(String color){
-        List<Fruits> fruitColor = new ArrayList<Fruits>();
-        for (int i=0;i<fruits.size();i++){
-            if (fruits.get(i).color().equalsIgnoreCase(color)){
-               fruitColor.add(fruits.get(i));
-            }
-        }
-        return fruitColor;
+    // This list of fruits is a mixed fruits, which have to be segregated and placed into a multilayer bowl.
+    public Segregator(List<Fruit> fruits, MultilayerBowl multilayerBowl) {
+        this.fruits = fruits;
+        this.multilayerBowl = multilayerBowl;
     }
 
-
-    public List segregateBySize(String size){
-        List<Fruits> fruitSize = new ArrayList<Fruits>();
-        for (int i=0;i<fruits.size();i++){
-            if (fruits.get(i).size().equalsIgnoreCase(size)){
-                fruitSize.add(fruits.get(i));
-            }
-        }
-        return fruitSize;
+    public MultilayerBowl segregateByName() {
+        fruits.forEach(
+                fruit -> {
+                    addToBowl(FruitPredicates.namePredicate(fruit), fruit);
+                });
+        return multilayerBowl;
     }
 
-    public List segregateByType(String type){
-        List<Fruits> fruitType = new ArrayList<Fruits>();
-        for (int i=0;i<fruits.size();i++){
-            if (fruits.get(i).type().equalsIgnoreCase(type)){
-                fruitType.add(fruits.get(i));
-            }
-        }
-        return fruitType;
+    public MultilayerBowl segregateByColor() {
+        fruits.forEach(
+                fruit -> {
+                    addToBowl(FruitPredicates.colorPredicate(fruit), fruit);
+                });
+        return multilayerBowl;
     }
 
+    public MultilayerBowl segregateByType() {
+        fruits.forEach(
+                fruit -> {
+                    addToBowl(FruitPredicates.typePredicate(fruit), fruit);
+                });
+        return multilayerBowl;
+    }
+
+    public MultilayerBowl segregateBySize() {
+        fruits.forEach(
+                fruit -> {
+                    addToBowl(FruitPredicates.sizePredicate(fruit), fruit);
+                });
+        return multilayerBowl;
+    }
+
+    private void addToBowl(Predicate<Fruit> segregationPredicate, Fruit fruit) {
+        Optional<Bowl> matchingBowl = multilayerBowl.getMatchingBowl(segregationPredicate);
+        if(matchingBowl.isEmpty()) {
+            matchingBowl = multilayerBowl.getEmptyBowl();
+        }
+        matchingBowl.ifPresent(bowl -> multilayerBowl.add(bowl, fruit));
+    }
 }
 
